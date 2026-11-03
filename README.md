@@ -204,42 +204,6 @@ Visit: **http://localhost:5173**
 
 ---
 
-## 9. Deployment Preparation
-
-### A. Frontend Deployment on Vercel
-1. Set the root directory to `client` or configure the root with `client/vercel.json`.
-2. Framework Preset: **Vite**.
-3. Build Command: `npm run build`.
-4. Output Directory: `dist`.
-5. Environment Variable:
-   - `VITE_API_URL=https://<your-render-backend-url>/api`
-
-### B. Backend Deployment on Render
-The repository includes a ready-to-use `render.yaml`:
-1. Create a new **Web Service** on Render pointing to your Git repository.
-2. Build Command: `npm install && npm --prefix client run build`
-3. Start Command: `node server/index.js`
-4. Set Environment Variables:
-   - `NODE_ENV=production`
-   - `PORT=5000`
-   - `MONGODB_URI=<Your MongoDB Atlas connection URI>`
-   - `JWT_SECRET=<Random 64-character secret>`
-   - `CLIENT_URL=https://<your-vercel-domain>.vercel.app`
-
----
-
-## 10. Technical Interview Highlights
-
-1. **How is the target overshoot or data consistency handled?**
-   Target checks are enforced both in Mongoose pre-validation and Express controllers. Planted tree counts must be strictly positive whole integers, dates must follow $startDate \le endDate \le today$, and verification transitions require explicit authorization.
-2. **Why does the platform not add inspection counts to planted totals?**
-   Planting counts represent *quantity of carbon stock added*. Survival inspections represent *quality and mortality rates of an existing sample*. Merging them would produce phantom carbon credits and violate Gold Standard / Verra compliance rules.
-3. **How does the audit trail maintain immutability?**
-   Audit logs have no `UPDATE` or `DELETE` API endpoints. Each change writes an append-only JSON snapshot recording who changed what, the exact delta, and the reason.
-4. **How are real-time aggregations calculated?**
-   The dashboard runs MongoDB aggregation pipelines (`$group`, `$sum`, `$facet`) directly on `PlantingActivity` and `SurvivalInspection` collections rather than relying on stale cached counters.
-
----
 
 *VanaTrack is designed and engineered for high reliability, data transparency, and climate impact verification.*
 
