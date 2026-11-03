@@ -7,3 +7,15 @@ uploads/*
 !uploads/.gitkeep
 .DS_Store
 *.log
+
+# Environment files
+.env.*
+!.env.example
+
+# Nested dependencies
+client/node_modules/
+server/node_modules/
+
+# Nested build folders
+client/dist/
+server/dist/

@@ -20,3 +20,4 @@ services:
       # Optional: paste your MongoDB Atlas URI here; if omitted, in-memory MongoDB is used automatically!
       - key: MONGODB_URI
         sync: false
+

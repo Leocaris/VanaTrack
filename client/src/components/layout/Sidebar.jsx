@@ -177,3 +177,4 @@ export const Sidebar = ({ onCloseMobile, alertCount = 0 }) => {
     </aside>
   );
 };
+

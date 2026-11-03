@@ -35,20 +35,16 @@ import { Badge } from '../../components/common/Badge';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { ProgressBar } from '../../components/common/ProgressBar';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const CATEGORY_COLORS = ['#1b4332', '#2d6a4f', '#40916c', '#52b788', '#74c69d', '#95d5b2'];
-const STATUS_COLORS = {
-  Active: '#1b4332',
-  Planned: '#3b82f6',
-  Completed: '#0d9488',
-  'On Hold': '#94a3b8',
-};
 
 export const Dashboard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { canManage } = useAuth();
+  const { isDark } = useTheme();
   const navigate = useNavigate();
 
   const fetchDashboardData = async () => {
@@ -74,10 +70,10 @@ export const Dashboard = () => {
 
   if (error) {
     return (
-      <div className="p-6 bg-rose-50 border border-rose-200 rounded-2xl text-rose-800 text-center">
-        <AlertTriangle className="w-8 h-8 text-rose-600 mx-auto mb-2" />
+      <div className="p-6 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/40 rounded-2xl text-rose-800 dark:text-rose-300 text-center">
+        <AlertTriangle className="w-8 h-8 text-rose-600 dark:text-rose-400 mx-auto mb-2" />
         <h3 className="font-bold text-sm">Dashboard Analytics Offline</h3>
-        <p className="text-xs mt-1 text-rose-600">{error}</p>
+        <p className="text-xs mt-1 text-rose-600 dark:text-rose-300">{error}</p>
         <button
           onClick={fetchDashboardData}
           className="mt-3 px-3 py-1.5 bg-rose-600 text-white rounded-lg text-xs font-semibold"
@@ -93,7 +89,7 @@ export const Dashboard = () => {
   return (
     <div className="space-y-6 pb-12">
       {/* Test Scenario Spotlight Banner */}
-      <div className="bg-gradient-to-r from-forest-900 via-forest-950 to-[#0b241b] rounded-2xl p-4 sm:p-5 text-white border border-forest-800/60 shadow-elevated relative overflow-hidden">
+      <div className="bg-gradient-to-r from-forest-900 via-forest-950 to-[#0b241b] rounded-2xl p-4 sm:p-5 text-white border border-forest-800/60 dark:border-emerald-800/50 shadow-elevated relative overflow-hidden">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative z-10">
           <div>
             <div className="flex items-center gap-2">
@@ -196,17 +192,17 @@ export const Dashboard = () => {
       {/* Primary Analytics Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Monthly Plantation Trends Chart */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/80 p-5 shadow-card">
+        <div className="lg:col-span-2 bg-white dark:bg-[#0b241b] rounded-2xl border border-slate-200/80 dark:border-emerald-900/40 p-5 shadow-card transition-colors duration-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
                 Monthly Plantation Trends
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-emerald-400/80">
                 Verified vs. Pending trees planted per calendar month (DB Aggregated)
               </p>
             </div>
-            <span className="text-xs font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100">
+            <span className="text-xs font-mono text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-100 dark:border-emerald-800/40">
               Database Live
             </span>
           </div>
@@ -220,22 +216,22 @@ export const Dashboard = () => {
                 >
                   <defs>
                     <linearGradient id="colorVerified" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#1b4332" stopOpacity={0.8} />
-                      <stop offset="95%" stopColor="#1b4332" stopOpacity={0.05} />
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0.05} />
                     </linearGradient>
                     <linearGradient id="colorPending" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#d97706" stopOpacity={0.8} />
-                      <stop offset="95%" stopColor="#d97706" stopOpacity={0.05} />
+                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.05} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                  <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#64748b' }} />
-                  <YAxis tick={{ fontSize: 11, fill: '#64748b' }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#14382a' : '#f1f5f9'} />
+                  <XAxis dataKey="month" tick={{ fontSize: 11, fill: isDark ? '#94a3b8' : '#64748b' }} />
+                  <YAxis tick={{ fontSize: 11, fill: isDark ? '#94a3b8' : '#64748b' }} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: '#0f2e22',
+                      backgroundColor: '#0a231a',
                       borderRadius: '0.75rem',
-                      border: 'none',
+                      border: '1px solid #1b4d3a',
                       color: '#ffffff',
                       fontSize: '12px',
                     }}
@@ -246,7 +242,7 @@ export const Dashboard = () => {
                     type="monotone"
                     dataKey="verifiedTrees"
                     name="Verified Trees"
-                    stroke="#1b4332"
+                    stroke="#10b981"
                     fillOpacity={1}
                     fill="url(#colorVerified)"
                     strokeWidth={2}
@@ -255,7 +251,7 @@ export const Dashboard = () => {
                     type="monotone"
                     dataKey="pendingTrees"
                     name="Pending Verification"
-                    stroke="#d97706"
+                    stroke="#f59e0b"
                     fillOpacity={1}
                     fill="url(#colorPending)"
                     strokeWidth={2}
@@ -271,13 +267,13 @@ export const Dashboard = () => {
         </div>
 
         {/* Category Distribution Donut Chart */}
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-card">
+        <div className="bg-white dark:bg-[#0b241b] rounded-2xl border border-slate-200/80 dark:border-emerald-900/40 p-5 shadow-card transition-colors duration-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
                 Project Category Mix
               </h3>
-              <p className="text-xs text-slate-500">Distribution across environmental biomes</p>
+              <p className="text-xs text-slate-500 dark:text-emerald-400/80">Distribution across environmental biomes</p>
             </div>
           </div>
 
@@ -303,8 +299,9 @@ export const Dashboard = () => {
                 </Pie>
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#0f2e22',
+                    backgroundColor: '#0a231a',
                     borderRadius: '0.75rem',
+                    border: '1px solid #1b4d3a',
                     color: '#ffffff',
                     fontSize: '12px',
                   }}
@@ -323,9 +320,9 @@ export const Dashboard = () => {
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ backgroundColor: CATEGORY_COLORS[idx % CATEGORY_COLORS.length] }}
                   />
-                  <span className="text-slate-600 truncate">{cat.name}</span>
+                  <span className="text-slate-600 dark:text-slate-300 truncate">{cat.name}</span>
                 </div>
-                <span className="font-mono font-semibold text-slate-800">
+                <span className="font-mono font-semibold text-slate-800 dark:text-white">
                   {cat.count} ({cat.targetTrees.toLocaleString()} trees)
                 </span>
               </div>
@@ -337,19 +334,19 @@ export const Dashboard = () => {
       {/* Project-Wise Progress Bar Chart & Target Tracker */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Project Target vs Verified Progress (2 Columns) */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/80 p-5 shadow-card">
+        <div className="lg:col-span-2 bg-white dark:bg-[#0b241b] rounded-2xl border border-slate-200/80 dark:border-emerald-900/40 p-5 shadow-card transition-colors duration-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
                 Project Target vs. Verified Progress
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-emerald-400/80">
                 Direct comparison of planned target trees against verified field plantings
               </p>
             </div>
             <button
               onClick={() => navigate('/projects')}
-              className="text-xs font-semibold text-forest-800 hover:text-forest-950 flex items-center gap-1"
+              className="text-xs font-semibold text-forest-800 dark:text-emerald-400 hover:text-forest-950 dark:hover:text-emerald-300 flex items-center gap-1"
             >
               <span>Manage Projects</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -362,26 +359,27 @@ export const Dashboard = () => {
                 data={charts.projectProgress}
                 margin={{ top: 10, right: 10, left: -10, bottom: 25 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#14382a' : '#f1f5f9'} />
                 <XAxis
                   dataKey="code"
-                  tick={{ fontSize: 10, fill: '#64748b' }}
+                  tick={{ fontSize: 10, fill: isDark ? '#94a3b8' : '#64748b' }}
                   angle={-20}
                   textAnchor="end"
                 />
-                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} />
+                <YAxis tick={{ fontSize: 11, fill: isDark ? '#94a3b8' : '#64748b' }} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#0f2e22',
+                    backgroundColor: '#0a231a',
                     borderRadius: '0.75rem',
+                    border: '1px solid #1b4d3a',
                     color: '#ffffff',
                     fontSize: '12px',
                   }}
                   formatter={(val, name) => [`${val.toLocaleString()} trees`, name]}
                 />
                 <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                <Bar dataKey="target" name="Target Target" fill="#cbd5e1" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="verified" name="Verified Trees" fill="#1b4332" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="target" name="Target Target" fill={isDark ? '#334155' : '#cbd5e1'} radius={[4, 4, 0, 0]} />
+                <Bar dataKey="verified" name="Verified Trees" fill="#10b981" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="pending" name="Pending Review" fill="#f59e0b" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -389,18 +387,18 @@ export const Dashboard = () => {
         </div>
 
         {/* Project Status Breakdown & Quick Links */}
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-card flex flex-col justify-between">
+        <div className="bg-white dark:bg-[#0b241b] rounded-2xl border border-slate-200/80 dark:border-emerald-900/40 p-5 shadow-card transition-colors duration-200 flex flex-col justify-between">
           <div>
-            <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
               Project Lifecycle Health
             </h3>
-            <p className="text-xs text-slate-500 mb-4">Status & inspection coverage</p>
+            <p className="text-xs text-slate-500 dark:text-emerald-400/80 mb-4">Status & inspection coverage</p>
 
             <div className="space-y-3">
               {charts.projectProgress.slice(0, 4).map((p) => (
-                <div key={p.id} className="p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+                <div key={p.id} className="p-3 rounded-xl bg-slate-50/80 dark:bg-emerald-950/40 border border-slate-100 dark:border-emerald-900/30">
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="font-semibold text-slate-900 truncate">{p.name}</span>
+                    <span className="font-semibold text-slate-900 dark:text-white truncate">{p.name}</span>
                     <Badge variant={p.status} size="xs">
                       {p.status}
                     </Badge>
@@ -411,9 +409,9 @@ export const Dashboard = () => {
                     size="sm"
                     sublabel={`${p.verified.toLocaleString()} / ${p.target.toLocaleString()}`}
                   />
-                  <div className="mt-1 flex items-center justify-between text-[10px] text-slate-500">
+                  <div className="mt-1 flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400">
                     <span>Remaining: {p.remaining.toLocaleString()} trees</span>
-                    <span className="font-medium text-emerald-800">
+                    <span className="font-medium text-emerald-800 dark:text-emerald-400">
                       Survival: {p.survivalRate !== null ? `${p.survivalRate}%` : 'Pending audit'}
                     </span>
                   </div>
@@ -422,12 +420,12 @@ export const Dashboard = () => {
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-            <span className="text-xs text-slate-500">Need to record field data?</span>
+          <div className="mt-4 pt-3 border-t border-slate-100 dark:border-emerald-900/30 flex items-center justify-between">
+            <span className="text-xs text-slate-500 dark:text-slate-400">Need to record field data?</span>
             <div className="flex gap-2">
               <button
                 onClick={() => navigate('/activities')}
-                className="px-2.5 py-1.5 rounded-lg bg-forest-800 text-white text-xs font-semibold hover:bg-forest-900 transition flex items-center gap-1"
+                className="px-2.5 py-1.5 rounded-lg bg-forest-800 dark:bg-emerald-700 text-white text-xs font-semibold hover:bg-forest-900 dark:hover:bg-emerald-600 transition flex items-center gap-1"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>New Activity</span>
@@ -438,19 +436,19 @@ export const Dashboard = () => {
       </div>
 
       {/* Recent Field Evidence Stream */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-card">
+      <div className="bg-white dark:bg-[#0b241b] rounded-2xl border border-slate-200/80 dark:border-emerald-900/40 p-5 shadow-card transition-colors duration-200">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
               Recent Field Planting Submissions
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-emerald-400/80">
               Photographic field evidence stream & auditor verification status
             </p>
           </div>
           <button
             onClick={() => navigate('/activities')}
-            className="text-xs font-semibold text-forest-800 hover:text-forest-950 flex items-center gap-1"
+            className="text-xs font-semibold text-forest-800 dark:text-emerald-400 hover:text-forest-950 dark:hover:text-emerald-300 flex items-center gap-1"
           >
             <span>All Submissions</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -462,10 +460,10 @@ export const Dashboard = () => {
             recentActivities.map((act) => (
               <div
                 key={act._id}
-                className="rounded-xl border border-slate-200/80 overflow-hidden hover:shadow-card transition flex flex-col justify-between bg-white"
+                className="rounded-xl border border-slate-200/80 dark:border-emerald-900/40 overflow-hidden hover:shadow-card transition flex flex-col justify-between bg-white dark:bg-[#081e16]"
               >
                 {act.evidencePhotoUrl && (
-                  <div className="h-32 w-full overflow-hidden bg-slate-100 relative">
+                  <div className="h-32 w-full overflow-hidden bg-slate-100 dark:bg-slate-900 relative">
                     <img
                       src={act.evidencePhotoUrl}
                       alt={act.activityCode}
@@ -484,21 +482,21 @@ export const Dashboard = () => {
 
                 <div className="p-3.5 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-800">
+                    <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-800 dark:text-slate-200">
                       <span>{act.activityCode}</span>
-                      <span className="text-forest-900 font-sans font-bold">
+                      <span className="text-forest-900 dark:text-emerald-400 font-sans font-bold">
                         {act.treesPlanted.toLocaleString()} trees
                       </span>
                     </div>
-                    <div className="text-xs text-slate-600 mt-1 font-medium truncate">
+                    <div className="text-xs text-slate-600 dark:text-slate-300 mt-1 font-medium truncate">
                       {act.projectId?.name || 'Environmental Project'}
                     </div>
-                    <div className="text-[11px] text-slate-400 mt-0.5 truncate">
+                    <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5 truncate">
                       {act.location}
                     </div>
                   </div>
 
-                  <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+                  <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-emerald-900/30 flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400">
                     <span>
                       {new Date(act.plantationDate).toLocaleDateString(undefined, {
                         month: 'short',

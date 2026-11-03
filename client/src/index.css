@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-sans bg-[#f8faf9] text-slate-800 selection:bg-forest-100 selection:text-forest-900;
+    @apply font-sans bg-[#f8faf9] text-slate-800 selection:bg-forest-100 selection:text-forest-900 dark:bg-[#071912] dark:text-slate-100 transition-colors duration-200;
   }
 }
 
@@ -20,8 +20,14 @@
   background: #cbd5e1;
   border-radius: 9999px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e3a2e;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #2d5a47;
 }
 
 /* Leaflet map styles container */
@@ -30,4 +36,11 @@
   height: 100%;
   border-radius: 0.75rem;
   z-index: 10;
+}
+
+.dark .leaflet-layer,
+.dark .leaflet-control-zoom-in,
+.dark .leaflet-control-zoom-out,
+.dark .leaflet-control-attribution {
+  filter: brightness(0.85) invert(1) contrast(1.1) hue-rotate(170deg);
 }

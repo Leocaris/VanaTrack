@@ -128,10 +128,10 @@ export const ActivitiesList = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
             Planting Activities & Evidence Verification
           </h2>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-500 dark:text-emerald-400/80">
             Field reports, sapling counts, photographic evidence, and auditor verification workflow
           </p>
         </div>
@@ -139,16 +139,16 @@ export const ActivitiesList = () => {
         {canManage && (
           <button
             onClick={() => setIsNewModalOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-forest-900 hover:bg-forest-950 text-white text-xs font-semibold shadow-card transition"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-forest-900 dark:bg-emerald-600 hover:bg-forest-950 dark:hover:bg-emerald-500 text-white text-xs font-semibold shadow-card transition"
           >
-            <Plus className="w-4 h-4 text-emerald-400" />
+            <Plus className="w-4 h-4 text-emerald-400 dark:text-white" />
             <span>Submit Planting Activity</span>
           </button>
         )}
       </div>
 
       {/* Filter bar */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-card space-y-3">
+      <div className="bg-white dark:bg-[#0b241b] rounded-2xl border border-slate-200/80 dark:border-emerald-900/40 p-4 shadow-card space-y-3 transition-colors duration-200">
         <div className="flex flex-col md:flex-row items-center gap-3">
           <div className="relative flex-1 w-full">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -157,7 +157,7 @@ export const ActivitiesList = () => {
               placeholder="Search by activity code, location, or notes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700 transition"
+              className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50/50 dark:bg-[#071912] text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500 transition"
             />
           </div>
 
@@ -165,7 +165,7 @@ export const ActivitiesList = () => {
             <select
               value={selectedProject}
               onChange={(e) => setSelectedProject(e.target.value)}
-              className="px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-1 focus:ring-forest-700 max-w-[200px] truncate"
+              className="px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-white dark:bg-[#071912] text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-500 max-w-[200px] truncate"
             >
               <option value="All">All Projects</option>
               {projects.map((p) => (
@@ -178,7 +178,7 @@ export const ActivitiesList = () => {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-1 focus:ring-forest-700"
+              className="px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-white dark:bg-[#071912] text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-500"
             >
               <option value="All">All Verification Statuses</option>
               <option value="Pending">Pending Audit</option>
@@ -200,10 +200,10 @@ export const ActivitiesList = () => {
           onAction={() => setIsNewModalOpen(true)}
         />
       ) : (
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden">
+        <div className="bg-white dark:bg-[#0b241b] rounded-2xl border border-slate-200/80 dark:border-emerald-900/40 shadow-card overflow-hidden transition-colors duration-200">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50/80 border-b border-slate-200 text-slate-500 uppercase font-mono tracking-wider text-[10px]">
+              <thead className="bg-slate-50/80 dark:bg-emerald-950/40 border-b border-slate-200 dark:border-emerald-900/40 text-slate-500 dark:text-emerald-400 uppercase font-mono tracking-wider text-[10px]">
                 <tr>
                   <th className="px-5 py-3.5">Activity Code</th>
                   <th className="px-5 py-3.5">Environmental Project</th>
@@ -215,31 +215,31 @@ export const ActivitiesList = () => {
                   <th className="px-5 py-3.5 text-right">Verification Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-emerald-900/30">
                 {activities.map((act) => (
-                  <tr key={act._id} className="hover:bg-slate-50/50 transition">
-                    <td className="px-5 py-4 font-mono font-bold text-slate-900">
+                  <tr key={act._id} className="hover:bg-slate-50/50 dark:hover:bg-emerald-950/30 transition">
+                    <td className="px-5 py-4 font-mono font-bold text-slate-900 dark:text-white">
                       {act.activityCode}
                     </td>
 
                     <td className="px-5 py-4">
-                      <div className="font-semibold text-slate-900">
+                      <div className="font-semibold text-slate-900 dark:text-slate-100">
                         {act.projectId?.name || 'Project'}
                       </div>
-                      <div className="text-[10px] text-slate-400 font-mono">
+                      <div className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">
                         {act.projectId?.projectId}
                       </div>
                     </td>
 
-                    <td className="px-5 py-4 text-slate-600">
+                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300">
                       {new Date(act.plantationDate).toLocaleDateString()}
                     </td>
 
-                    <td className="px-5 py-4 font-mono font-bold text-slate-900">
+                    <td className="px-5 py-4 font-mono font-bold text-slate-900 dark:text-white">
                       {act.treesPlanted.toLocaleString()}
                     </td>
 
-                    <td className="px-5 py-4 text-slate-600 max-w-xs truncate">
+                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300 max-w-xs truncate">
                       {act.location}
                     </td>
 
@@ -249,13 +249,13 @@ export const ActivitiesList = () => {
                           href={act.evidencePhotoUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 bg-emerald-50 px-2 py-1 rounded-md border border-emerald-100"
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 hover:text-emerald-900 dark:hover:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-1 rounded-md border border-emerald-100 dark:border-emerald-800/40"
                         >
                           <Camera className="w-3 h-3" />
                           <span>Photo Evidence</span>
                         </a>
                       ) : (
-                        <span className="text-slate-400 text-[11px]">No photo</span>
+                        <span className="text-slate-400 dark:text-slate-500 text-[11px]">No photo</span>
                       )}
                     </td>
 
@@ -272,13 +272,13 @@ export const ActivitiesList = () => {
                             setVerifyingActivity(act);
                             setVerificationNotes(act.verificationNotes || '');
                           }}
-                          className="px-2.5 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold text-xs hover:bg-emerald-700 transition flex items-center gap-1 ml-auto shadow-sm"
+                          className="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition flex items-center gap-1 ml-auto shadow-sm"
                         >
                           <ShieldCheck className="w-3.5 h-3.5" />
                           <span>Review & Verify</span>
                         </button>
                       ) : (
-                        <div className="text-[11px] text-slate-400">
+                        <div className="text-[11px] text-slate-400 dark:text-slate-500">
                           {act.verifiedBy ? (
                             <span>Audited by {act.verifiedBy.name}</span>
                           ) : (
@@ -304,7 +304,7 @@ export const ActivitiesList = () => {
       >
         <div className="space-y-4 text-xs">
           {verifyingActivity?.evidencePhotoUrl && (
-            <div className="rounded-xl overflow-hidden border border-slate-200 max-h-56 bg-slate-900">
+            <div className="rounded-xl overflow-hidden border border-slate-200 dark:border-emerald-900/40 max-h-56 bg-slate-900">
               <img
                 src={verifyingActivity.evidencePhotoUrl}
                 alt="Field Evidence"
@@ -313,7 +313,7 @@ export const ActivitiesList = () => {
             </div>
           )}
 
-          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 space-y-1.5 font-mono text-[11px]">
+          <div className="bg-slate-50 dark:bg-emerald-950/40 p-3 rounded-xl border border-slate-200/80 dark:border-emerald-900/40 space-y-1.5 font-mono text-[11px] text-slate-700 dark:text-slate-200">
             <div><strong>Project:</strong> {verifyingActivity?.projectId?.name} ({verifyingActivity?.projectId?.projectId})</div>
             <div><strong>Location:</strong> {verifyingActivity?.location}</div>
             <div><strong>Trees Planted:</strong> {verifyingActivity?.treesPlanted} saplings</div>
@@ -322,7 +322,7 @@ export const ActivitiesList = () => {
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">
+            <label className="block font-semibold text-slate-700 dark:text-slate-200 mb-1">
               Verification Notes / Ground Truth Audit Log:
             </label>
             <textarea
@@ -330,16 +330,16 @@ export const ActivitiesList = () => {
               value={verificationNotes}
               onChange={(e) => setVerificationNotes(e.target.value)}
               placeholder="e.g. Geotag coordinates match flight permit; saplings count confirmed by grid sampling..."
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50 dark:bg-[#071912] text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2">
+          <div className="pt-4 border-t border-slate-100 dark:border-emerald-900/40 flex items-center justify-end gap-2">
             <button
               type="button"
               disabled={submitting}
               onClick={() => handleVerify('Rejected')}
-              className="px-4 py-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 font-semibold border border-rose-200 transition"
+              className="px-4 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 font-semibold border border-rose-200 dark:border-rose-900/40 transition"
             >
               Reject Activity
             </button>
@@ -364,7 +364,7 @@ export const ActivitiesList = () => {
       >
         <form onSubmit={handleCreateActivity} className="space-y-4 text-xs">
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">
+            <label className="block font-semibold text-slate-700 dark:text-slate-200 mb-1">
               Select Project *
             </label>
             <select
@@ -377,7 +377,7 @@ export const ActivitiesList = () => {
                   location: p ? p.location : formData.location,
                 });
               }}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50 dark:bg-[#071912] text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500"
             >
               {projects.map((p) => (
                 <option key={p._id} value={p._id}>
@@ -389,7 +389,7 @@ export const ActivitiesList = () => {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-semibold text-slate-700 mb-1">
+              <label className="block font-semibold text-slate-700 dark:text-slate-200 mb-1">
                 Number of Trees Planted *
               </label>
               <input
@@ -400,12 +400,12 @@ export const ActivitiesList = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, treesPlanted: parseInt(e.target.value) || 0 })
                 }
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-mono text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50 dark:bg-[#071912] font-mono text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
 
             <div>
-              <label className="block font-semibold text-slate-700 mb-1">
+              <label className="block font-semibold text-slate-700 dark:text-slate-200 mb-1">
                 Plantation Date *
               </label>
               <input
@@ -415,13 +415,13 @@ export const ActivitiesList = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, plantationDate: e.target.value })
                 }
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50 dark:bg-[#071912] text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">
+            <label className="block font-semibold text-slate-700 dark:text-slate-200 mb-1">
               Field Site Location *
             </label>
             <input
@@ -429,12 +429,12 @@ export const ActivitiesList = () => {
               required
               value={formData.location}
               onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50 dark:bg-[#071912] text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">
+            <label className="block font-semibold text-slate-700 dark:text-slate-200 mb-1">
               Supporting Photograph URL *
             </label>
             <input
@@ -442,34 +442,34 @@ export const ActivitiesList = () => {
               required
               value={formData.evidencePhotoUrl}
               onChange={(e) => setFormData({ ...formData, evidencePhotoUrl: e.target.value })}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50 dark:bg-[#071912] text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">
+            <label className="block font-semibold text-slate-700 dark:text-slate-200 mb-1">
               Species Planted (Comma separated)
             </label>
             <input
               type="text"
               value={formData.speciesList}
               onChange={(e) => setFormData({ ...formData, speciesList: e.target.value })}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest-700"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-emerald-900/40 bg-slate-50 dark:bg-[#071912] text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-[#071912] focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2">
+          <div className="pt-4 border-t border-slate-100 dark:border-emerald-900/40 flex items-center justify-end gap-2">
             <button
               type="button"
               onClick={() => setIsNewModalOpen(false)}
-              className="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition"
+              className="px-4 py-2 rounded-xl border border-slate-200 dark:border-emerald-800/40 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-emerald-950/40 transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="px-4 py-2 rounded-xl bg-forest-900 text-white font-semibold hover:bg-forest-950 transition shadow-sm"
+              className="px-4 py-2 rounded-xl bg-forest-900 dark:bg-emerald-600 text-white font-semibold hover:bg-forest-950 dark:hover:bg-emerald-500 transition shadow-sm"
             >
               {submitting ? 'Submitting...' : 'Submit for Verification'}
             </button>

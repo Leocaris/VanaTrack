@@ -9,3 +9,4 @@ router.use(protect);
 router.get('/dashboard', getDashboardAnalytics);
 
 export default router;
+

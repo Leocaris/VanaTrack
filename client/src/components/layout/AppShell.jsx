@@ -41,7 +41,7 @@ export const AppShell = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex h-screen bg-[#f8faf9] overflow-hidden">
+    <div className="flex h-screen bg-[#f8faf9] dark:bg-[#071912] text-slate-800 dark:text-slate-100 overflow-hidden transition-colors duration-200">
       {/* Desktop Sidebar */}
       <div className="hidden lg:flex flex-shrink-0">
         <Sidebar alertCount={alertCount} />
@@ -78,3 +78,4 @@ export const AppShell = () => {
     </div>
   );
 };
+

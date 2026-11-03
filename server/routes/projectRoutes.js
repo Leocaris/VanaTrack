@@ -25,3 +25,4 @@ router
   .delete(authorizeRoles('admin'), deleteProject);
 
 export default router;
+

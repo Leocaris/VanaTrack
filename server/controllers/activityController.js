@@ -327,3 +327,4 @@ export const deleteActivity = async (req, res, next) => {
     next(error);
   }
 };
+

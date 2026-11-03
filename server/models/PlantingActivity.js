@@ -89,3 +89,4 @@ plantingActivitySchema.index({ projectId: 1, verificationStatus: 1 });
 
 const PlantingActivity = mongoose.model('PlantingActivity', plantingActivitySchema);
 export default PlantingActivity;
+

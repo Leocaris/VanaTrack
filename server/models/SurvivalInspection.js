@@ -93,3 +93,4 @@ survivalInspectionSchema.pre('validate', function (next) {
 
 const SurvivalInspection = mongoose.model('SurvivalInspection', survivalInspectionSchema);
 export default SurvivalInspection;
+

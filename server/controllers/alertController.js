@@ -24,3 +24,4 @@ export const getAlerts = async (req, res, next) => {
     next(error);
   }
 };
+

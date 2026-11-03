@@ -18,3 +18,4 @@ router.post('/register', protect, authorizeRoles('admin'), register);
 router.post('/seed', triggerSeed);
 
 export default router;
+

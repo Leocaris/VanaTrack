@@ -179,3 +179,4 @@ export const triggerSeed = async (req, res, next) => {
     next(error);
   }
 };
+

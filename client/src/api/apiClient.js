@@ -58,3 +58,4 @@ export const api = {
     }),
   delete: (endpoint, options) => apiClient(endpoint, { method: 'DELETE', ...options }),
 };
+

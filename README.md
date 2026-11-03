@@ -242,3 +242,4 @@ The repository includes a ready-to-use `render.yaml`:
 ---
 
 *VanaTrack is designed and engineered for high reliability, data transparency, and climate impact verification.*
+

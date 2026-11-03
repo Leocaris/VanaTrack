@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { AppShell } from './components/layout/AppShell';
 import { Login } from './pages/auth/Login';
 import { Dashboard } from './pages/dashboard/Dashboard';
@@ -55,45 +56,48 @@ const PublicRoute = ({ children }) => {
 export function App() {
   return (
     <BrowserRouter>
-      <ToastProvider>
-        <AuthProvider>
-          <Routes>
-            {/* Public Auth Route */}
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <Login />
-                </PublicRoute>
-              }
-            />
+      <ThemeProvider>
+        <ToastProvider>
+          <AuthProvider>
+            <Routes>
+              {/* Public Auth Route */}
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <Login />
+                  </PublicRoute>
+                }
+              />
 
-            {/* Protected SaaS Application Routes */}
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <AppShell />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Dashboard />} />
-              <Route path="projects" element={<ProjectsList />} />
-              <Route path="projects/:id" element={<ProjectDetail />} />
-              <Route path="activities" element={<ActivitiesList />} />
-              <Route path="survival" element={<SurvivalMonitoring />} />
-              <Route path="map" element={<ProjectMap />} />
-              <Route path="alerts" element={<SmartAlerts />} />
-              <Route path="audit" element={<AuditHistory />} />
-            </Route>
+              {/* Protected SaaS Application Routes */}
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <AppShell />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<Dashboard />} />
+                <Route path="projects" element={<ProjectsList />} />
+                <Route path="projects/:id" element={<ProjectDetail />} />
+                <Route path="activities" element={<ActivitiesList />} />
+                <Route path="survival" element={<SurvivalMonitoring />} />
+                <Route path="map" element={<ProjectMap />} />
+                <Route path="alerts" element={<SmartAlerts />} />
+                <Route path="audit" element={<AuditHistory />} />
+              </Route>
 
-            {/* Catch-all redirect */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </AuthProvider>
-      </ToastProvider>
+              {/* Catch-all redirect */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </AuthProvider>
+        </ToastProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
 
 export default App;
+

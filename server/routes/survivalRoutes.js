@@ -25,3 +25,4 @@ router
   .delete(authorizeRoles('admin'), deleteInspection);
 
 export default router;
+

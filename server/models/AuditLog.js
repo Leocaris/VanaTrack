@@ -66,3 +66,4 @@ auditLogSchema.index({ entityType: 1, entityId: 1, timestamp: -1 });
 
 const AuditLog = mongoose.model('AuditLog', auditLogSchema);
 export default AuditLog;
+

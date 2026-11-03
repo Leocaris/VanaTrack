@@ -9,3 +9,4 @@ router.use(protect);
 router.get('/', getAlerts);
 
 export default router;
+

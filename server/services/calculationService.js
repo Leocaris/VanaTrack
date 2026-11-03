@@ -187,3 +187,4 @@ export const calculateGlobalStats = async () => {
     projectsRequiringAttention,
   };
 };
+

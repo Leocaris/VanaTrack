@@ -261,3 +261,4 @@ export const deleteInspection = async (req, res, next) => {
     next(error);
   }
 };
+
