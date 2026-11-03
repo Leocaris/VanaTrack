@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: vanatrack-api
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm --prefix client run build
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        value: https://vanatrack.vercel.app
+      # Optional: paste your MongoDB Atlas URI here; if omitted, in-memory MongoDB is used automatically!
+      - key: MONGODB_URI
+        sync: false
