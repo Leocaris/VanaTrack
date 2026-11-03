@@ -3,6 +3,16 @@
 
 ---
 
+# 🌱 VanaTrack – From Planting to Proof
+
+**Environmental Impact Intelligence Platform**
+
+A full-stack platform for tracking tree-planting activities, monitoring survival rates, verifying environmental progress, and visualizing project impact.
+
+### 🚀 Live Demo
+[Visit VanaTrack](https://vanatrack.onrender.com)
+
+
 ## 1. Executive Summary
 
 **VanaTrack** is an enterprise-grade Environmental Impact Intelligence Platform engineered to bring institutional rigor to reforestation and ecological restoration. It bridges the gap between field-level sapling planting and institutional carbon verification by providing:
