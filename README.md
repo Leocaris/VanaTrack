@@ -1,11 +1,5 @@
 # VanaTrack — From Planting to Proof
 ### Environmental Impact Intelligence Platform
-*Developed as a high-integrity technical assignment for **Akshaya Vana Climate Ventures**.*
-
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-emerald)]()
-[![Stack](https://img.shields.io/badge/Stack-React%20%7C%20Node%20%7C%20Express%20%7C%20MongoDB-forest)]()
-[![RBAC](https://img.shields.io/badge/RBAC-Admin%20%7C%20Manager%20%7C%20Auditor-purple)]()
-[![Coverage](https://img.shields.io/badge/Test%20Suite-6%2F6%20Passed-brightgreen)]()
 
 ---
 
